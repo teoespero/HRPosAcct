@@ -2,7 +2,6 @@
 	
 	HRPosAcct
 	The HRPosAcct table stores the account information for each position defined in the HRPos table.
-
 */
 
 select 
@@ -13,9 +12,10 @@ from tblDistrict
 
 select 
 	(select DistrictId from tblDistrict) as OrgId,
-	pcd.PositionControlID as PosID,
+	pcd.SlotNum as PosID,
 	null as PosTypeId,
 	fund.fsAccountID as AcctNumID,
+	acct.accountString,
 	(select CONVERT(VARCHAR(10), StartDate, 110) from tblPayroll where PayrollID = fund.EffectivePayrollId) as DateFrom,
 	null as DateThru,
 	fund.[Percent]
